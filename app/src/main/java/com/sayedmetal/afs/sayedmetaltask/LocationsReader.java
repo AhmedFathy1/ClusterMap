@@ -14,17 +14,15 @@ import java.util.Scanner;
  */
 
 public class LocationsReader {
-    /*
-     * This matches only once in whole input,
-     * so Scanner.next returns whole InputStream as a String.
-     * http://stackoverflow.com/a/5445161/2183804
-     */
     private static final String REGEX_INPUT_BOUNDARY_BEGINNING = "\\A";
 
     public List<MyItem> read(InputStream inputStream) throws JSONException {
         List<MyItem> items = new ArrayList<MyItem>();
+        //read the entire input stream as a string , the delimiter we use matches the entire data
         String json = new Scanner(inputStream).useDelimiter(REGEX_INPUT_BOUNDARY_BEGINNING).next();
+        //initialize a json array object from a string
         JSONArray array = new JSONArray(json);
+        //foreach location construct a MyItem object
         for (int i = 0; i < array.length(); i++) {
             String title = null;
             String snippet = null;
